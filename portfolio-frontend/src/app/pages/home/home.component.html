@@ -1,0 +1,119 @@
+<main class="home-page">
+
+   <section class="hero">
+
+      <div class="hero-content">
+
+         <div class="availability">
+            <span class="status-dot"></span>
+            Java Full Stack Developer
+         </div>
+
+         <p class="eyebrow">HELLO, I'M</p>
+
+         <h1>
+            {{ fullName }}
+            <span class="accent">.</span>
+         </h1>
+
+         <h2>{{ headline }}</h2>
+
+         <p class="introduction">
+            {{ introduction }}
+         </p>
+
+         <div class="focus-list">
+            @for (area of focusAreas; track area) {
+            <span class="focus-tag">{{ area }}</span>
+            }
+         </div>
+
+         <div class="hero-actions">
+
+            <a routerLink="/projects" class="button primary-button">
+               Explore My Projects
+               <span aria-hidden="true">→</span>
+            </a>
+
+            <a routerLink="/contact" class="button secondary-button">
+               Contact Me
+            </a>
+
+         </div>
+
+         <div class="social-links">
+            <a href="https://github.com/jay-kumar-sharma/" target="_blank" rel="noopener noreferrer">
+               GitHub ↗
+            </a>
+
+            <a href="https://www.linkedin.com/in/jay-kumar-sharma01/" target="_blank" rel="noopener noreferrer">
+               LinkedIn ↗
+            </a>
+         </div>
+
+      </div>
+
+      <div class="hero-visual">
+
+         <div class="visual-glow"></div>
+
+         <div class="code-card">
+
+            <div class="code-header">
+               <div class="window-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+               </div>
+
+               <span>developer.java</span>
+            </div>
+
+            <pre><code><span class="code-purple">public class</span> Developer &#123;
+ 
+   <span class="code-purple">private final</span>
+   String role =
+     <span class="code-green">"Full Stack Developer"</span>;
+ 
+   <span class="code-purple">public</span> String build() &#123;
+     <span class="code-purple">return</span>
+       <span class="code-green">"Reliable software"</span>;
+   &#125;
+ 
+ &#125;</code></pre>
+
+            <div class="code-footer">
+               <span class="code-status"></span>
+               Building something meaningful
+            </div>
+
+         </div>
+
+         <div class="floating-badge badge-java">
+            <span>☕</span> Java
+         </div>
+
+         <div class="floating-badge badge-ai">
+            <span>✦</span> AI Engineering
+         </div>
+
+      </div>
+
+   </section>
+
+   <section class="technology-section">
+
+      <p>TECHNOLOGIES I WORK WITH</p>
+
+      <div class="technology-list">
+         <span>Java</span>
+         <span>Spring Boot</span>
+         <span>Angular</span>
+         <span>MySQL</span>
+         <span>Spring AI</span>
+         <span>Docker</span>
+      </div>
+
+   </section>
+
+</main>

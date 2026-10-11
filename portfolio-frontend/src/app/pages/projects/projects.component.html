@@ -1,0 +1,133 @@
+<section class="projects-page">
+
+   <header class="projects-header">
+      <p class="eyebrow">MY DEVELOPMENT JOURNEY</p>
+
+      <h1>My Projects</h1>
+
+      <p class="projects-intro">
+         Explore my projects, experiments, and coding journey.
+         Every repository represents something I've built or learned.
+      </p>
+
+      <a class="github-profile-link" href="https://github.com/jay-kumar-sharma" target="_blank"
+         rel="noopener noreferrer">
+         View GitHub Profile ↗
+      </a>
+   </header>
+
+   <!-- Loading State -->
+   <div class="status-message" *ngIf="isLoading">
+      <div class="loader"></div>
+      <p>Loading projects from GitHub...</p>
+   </div>
+
+   <!-- Error State -->
+   <div class="status-message error-message" *ngIf="!isLoading && errorMessage">
+      <p>{{ errorMessage }}</p>
+
+      <button type="button" (click)="loadRepositories()">
+         Try Again
+      </button>
+   </div>
+
+   <!-- Repository Content -->
+   <ng-container *ngIf="!isLoading && !errorMessage">
+
+      <div class="repository-summary">
+         <h2>GitHub Repositories</h2>
+
+         <p>
+            {{ repositories.length }}
+            {{
+            repositories.length === 1
+            ? 'repository'
+            : 'repositories'
+            }}
+            discovered
+         </p>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" *ngIf="repositories.length === 0">
+         <h3>No public repositories found</h3>
+
+         <p>
+            Check your GitHub profile or try again later.
+         </p>
+      </div>
+
+      <!-- Repository Cards -->
+      <div class="projects-grid" *ngIf="repositories.length > 0">
+
+         <article class="project-card" *ngFor="
+           let repository of repositories;
+           trackBy: trackByRepositoryId
+         ">
+
+            <div class="card-top">
+
+               <div class="repository-icon" aria-hidden="true">
+                  &lt;/&gt;
+               </div>
+
+               <span class="repository-status" *ngIf="repository.archived">
+                  Archived
+               </span>
+
+               <span class="repository-status fork-status" *ngIf="repository.fork">
+                  Fork
+               </span>
+
+            </div>
+
+            <h3>{{ repository.name }}</h3>
+
+            <p class="project-description">
+               {{ getRepositoryDescription(repository) }}
+            </p>
+
+            <div class="project-topics" *ngIf="repository.topics.length > 0">
+               <span *ngFor="let topic of repository.topics">
+                  {{ topic }}
+               </span>
+            </div>
+
+            <div class="project-meta">
+
+               <span *ngIf="repository.language">
+                  <span class="language-dot"></span>
+                  {{ repository.language }}
+               </span>
+
+               <span *ngIf="!repository.language">
+                  Language not detected
+               </span>
+
+               <span>
+                  Updated {{ getLastUpdated(repository.pushedAt) }}
+               </span>
+
+            </div>
+
+            <div class="project-actions">
+
+               <a class="action-link primary-link" [href]="repository.htmlUrl" target="_blank"
+                  rel="noopener noreferrer">
+                  View Source Code ↗
+               </a>
+
+               <a *ngIf="repository.homepage" class="action-link secondary-link" [href]="repository.homepage"
+                  target="_blank" rel="noopener noreferrer">
+                  Live Demo ↗
+               </a>
+
+            </div>
+
+         </article>
+
+      </div>
+
+   </ng-container>
+
+</section>

@@ -1,0 +1,41 @@
+<nav class="navbar">
+   <div class="nav-container">
+
+      <a class="brand" routerLink="/" (click)="closeMenu()">
+         <span class="brand-symbol">&lt;/&gt;</span>
+         <span>Portfolio</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" [attr.aria-expanded]="menuOpen"
+         (click)="toggleMenu()">
+         <span></span>
+         <span></span>
+         <span></span>
+      </button>
+
+      <div class="nav-links" [class.open]="menuOpen">
+
+         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">
+            Home
+         </a>
+
+         <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">
+            About
+         </a>
+
+         <a routerLink="/skills" routerLinkActive="active" (click)="closeMenu()">
+            Skills
+         </a>
+
+         <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">
+            Projects
+         </a>
+
+         <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">
+            Contact
+         </a>
+
+      </div>
+
+   </div>
+</nav>
