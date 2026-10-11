@@ -1,5 +1,254 @@
-<section class="page-placeholder">
-   <p class="eyebrow">GET TO KNOW ME</p>
-   <h1>About Me</h1>
-   <p>Your professional summary and experience will appear here.</p>
+<section class="about-page">
+
+   <!-- Loading State -->
+   <div class="loading-state" *ngIf="loading">
+      <p>Loading profile...</p>
+   </div>
+
+   <!-- Error State -->
+   <div class="error-state" *ngIf="!loading && errorMessage">
+      <p>{{ errorMessage }}</p>
+      <button type="button" (click)="loadProfile()">Try Again</button>
+   </div>
+
+   <!-- Empty State -->
+   <div class="empty-state" *ngIf="!loading && !errorMessage && !profile">
+      <p>No profile information is available yet.</p>
+   </div>
+
+   <!-- About Content -->
+   <ng-container *ngIf="!loading && !errorMessage && profile">
+
+      <!-- Page Heading -->
+      <header class="about-header">
+         <span class="section-label">GET TO KNOW ME</span>
+         <h1>About <span>Me</span></h1>
+         <p class="section-subtitle">
+            A little about my background, technical interests, and what I love building.
+         </p>
+      </header>
+
+      <!-- Introduction -->
+      <div class="about-intro">
+
+         <div class="intro-content">
+            <span class="eyebrow">WHO I AM</span>
+
+            <h2>
+               Hi, I'm
+               <span>{{ profile.fullName }}</span>
+            </h2>
+
+            <h3 class="profile-headline">
+               {{ profile.headline }}
+            </h3>
+
+            <p class="profile-summary">
+               {{ profile.summary }}
+            </p>
+
+            <div class="profile-details">
+               <div class="detail-item" *ngIf="profile.location">
+                  <span class="detail-label">Location</span>
+                  <span class="detail-value">{{ profile.location }}</span>
+               </div>
+
+               <div class="detail-item" *ngIf="profile.yearsOfExperience">
+                  <span class="detail-label">Experience</span>
+                  <span class="detail-value">{{ profile.yearsOfExperience }}</span>
+               </div>
+
+               <div class="detail-item" *ngIf="profile.email">
+                  <span class="detail-label">Email</span>
+                  <a [href]="'mailto:' + profile.email">
+                     {{ profile.email }}
+                  </a>
+               </div>
+            </div>
+
+            <div class="intro-tags">
+               <span>Java</span>
+               <span>Spring Boot</span>
+               <span>Microservices</span>
+               <span>Angular</span>
+               <span>AI Development</span>
+            </div>
+
+            <div class="social-links">
+               <a *ngIf="profile.githubUrl" [href]="profile.githubUrl" target="_blank" rel="noopener noreferrer">
+                  GitHub <span aria-hidden="true">↗</span>
+               </a>
+
+               <a *ngIf="profile.linkedinUrl" [href]="profile.linkedinUrl" target="_blank" rel="noopener noreferrer">
+                  LinkedIn <span aria-hidden="true">↗</span>
+               </a>
+            </div>
+         </div>
+
+         <!-- Developer Card -->
+         <aside class="developer-card">
+
+            <div class="profile-image-container" *ngIf="profile.profileImageUrl">
+               <img [src]="profile.profileImageUrl" [alt]="profile.fullName" class="profile-image"
+                  (error)="onProfileImageError()">
+            </div>
+
+            <div class="profile-symbol" *ngIf="!profile.profileImageUrl">
+               &lt;/&gt;
+            </div>
+
+            <span class="card-caption">MY DEVELOPMENT FOCUS</span>
+
+            <div class="focus-item">
+               <span class="focus-number">01</span>
+               <div>
+                  <h3>Backend Development</h3>
+                  <p>Java, Spring Boot &amp; REST APIs</p>
+               </div>
+            </div>
+
+            <div class="focus-item">
+               <span class="focus-number">02</span>
+               <div>
+                  <h3>Full-Stack Applications</h3>
+                  <p>Angular, TypeScript &amp; MySQL</p>
+               </div>
+            </div>
+
+            <div class="focus-item">
+               <span class="focus-number">03</span>
+               <div>
+                  <h3>AI-Powered Solutions</h3>
+                  <p>LLMs and local AI integration</p>
+               </div>
+            </div>
+
+         </aside>
+      </div>
+
+      <!-- Technical Expertise -->
+      <section class="expertise-section">
+
+         <div class="section-heading">
+            <span class="section-label">WHAT I WORK WITH</span>
+            <h2>Technical <span>Expertise</span></h2>
+            <p>Technologies I use to build and explore software solutions.</p>
+         </div>
+
+         <div class="expertise-grid">
+
+            <article class="expertise-card">
+               <div class="expertise-icon">01</div>
+               <h3>Backend Engineering</h3>
+               <p>
+                  Developing server-side applications, business logic, and REST APIs.
+               </p>
+               <div class="technology-list">
+                  <span>Java</span>
+                  <span>Spring Boot</span>
+                  <span>Spring Security</span>
+                  <span>REST APIs</span>
+               </div>
+            </article>
+
+            <article class="expertise-card">
+               <div class="expertise-icon">02</div>
+               <h3>Database &amp; Architecture</h3>
+               <p>
+                  Working with relational databases and modular application architectures.
+               </p>
+               <div class="technology-list">
+                  <span>MySQL</span>
+                  <span>JPA/Hibernate</span>
+                  <span>Microservices</span>
+               </div>
+            </article>
+
+            <article class="expertise-card">
+               <div class="expertise-icon">03</div>
+               <h3>Frontend Development</h3>
+               <p>
+                  Building web interfaces and integrating frontend applications with APIs.
+               </p>
+               <div class="technology-list">
+                  <span>Angular</span>
+                  <span>TypeScript</span>
+                  <span>HTML</span>
+                  <span>CSS</span>
+               </div>
+            </article>
+
+            <article class="expertise-card">
+               <div class="expertise-icon">04</div>
+               <h3>AI Application Development</h3>
+               <p>
+                  Exploring local language models and integrating AI capabilities into applications.
+               </p>
+               <div class="technology-list">
+                  <span>Ollama</span>
+                  <span>LLMs</span>
+                  <span>Spring AI</span>
+               </div>
+            </article>
+
+         </div>
+      </section>
+
+      <!-- Development Approach -->
+      <section class="approach-section">
+
+         <div class="section-heading">
+            <span class="section-label">HOW I APPROACH DEVELOPMENT</span>
+            <h2>Beyond <span>Writing Code</span></h2>
+         </div>
+
+         <div class="approach-grid">
+
+            <article class="approach-item">
+               <span class="approach-marker"></span>
+               <h3>Problem Solving</h3>
+               <p>
+                  Breaking complex problems into manageable steps and finding practical solutions.
+               </p>
+            </article>
+
+            <article class="approach-item">
+               <span class="approach-marker"></span>
+               <h3>Maintainable Code</h3>
+               <p>
+                  Focusing on readable code, clear responsibilities, and reusable components.
+               </p>
+            </article>
+
+            <article class="approach-item">
+               <span class="approach-marker"></span>
+               <h3>Continuous Learning</h3>
+               <p>
+                  Improving my engineering fundamentals and exploring emerging technologies.
+               </p>
+            </article>
+
+         </div>
+      </section>
+
+      <!-- Contact CTA -->
+      <section class="about-cta">
+
+         <div>
+            <span class="section-label">LET'S CONNECT</span>
+            <h2>Have an interesting project in mind?</h2>
+            <p>
+               I'm interested in building useful software and connecting with people
+               who enjoy solving challenging technical problems.
+            </p>
+         </div>
+
+         <a routerLink="/contact" class="contact-button">
+            Get in Touch <span aria-hidden="true">→</span>
+         </a>
+
+      </section>
+
+   </ng-container>
+
 </section>
